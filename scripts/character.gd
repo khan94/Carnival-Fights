@@ -4,9 +4,9 @@ extends KinematicBody2D
 export (int) var speed = 200
 
 var velocity = Vector2()
-var GRAVITY = 10
 var state_machine
 var stop_movement = false
+var is_dead = false
 var HP = 100
 onready var HealthTween = $"HealthTween"
 
@@ -48,13 +48,17 @@ func _punch():
 
 func _got_punched():
 	var updatedHealth = HP - 10
-#	HP = updatedHealth
 	HealthTween.interpolate_property(self, "HP",
 		null, updatedHealth, .75,
 		Tween.TRANS_EXPO, Tween.EASE_IN_OUT)
 	HealthTween.start()
 	if(HP <= 0):
-		print('motherfucker dies')
+		is_dead = true
 #		in the future run death animation and signal to end Round??
 	stop_movement = true
 	state_machine.travel("hurt")
+
+
+func _on_Area2D_area_entered(area):
+	if area.name == 'HitArea' && area.get_parent().name != self.name:
+		area.get_parent()._got_punched()

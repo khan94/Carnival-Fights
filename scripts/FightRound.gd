@@ -74,7 +74,7 @@ func _process_ai_punch():
 func _process(delta):
 	disp = character.position.x - enemy.position.x
 	dist = abs(disp)
-#	_process_ai_punch()
+	_process_ai_punch()
 	if enemy.HP <= 0:
 		_game_over("Player 1 Wins")
 	elif character.HP <= 0:
@@ -88,7 +88,7 @@ func _process(delta):
 		character.scale.x = -1
 			
 func _on_move_timeout():
-#	_process_ai_move()
+	_process_ai_move()
 	pass
 	
 func _on_time_over():

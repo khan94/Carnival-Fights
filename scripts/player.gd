@@ -14,7 +14,5 @@ func _get_input():
 
 func _physics_process(delta):
 	_get_input()
+
 	
-func _on_Area2D_body_entered(body):
-	if(body.name == 'enemy'):
-		body._got_punched()
