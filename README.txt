@@ -1,0 +1,1 @@
+Character.tscn is an Abstract class that Enemy.tscn and Player.tscn extend from

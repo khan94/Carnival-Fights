@@ -1,0 +1,90 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scripts/FightRound.gd" type="Script" id=1]
+[ext_resource path="res://assets/front.png" type="Texture" id=2]
+[ext_resource path="res://assets/fill.png" type="Texture" id=3]
+[ext_resource path="res://assets/Circusia.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://assets/BACKGROUND.png" type="Texture" id=5]
+
+[sub_resource type="DynamicFont" id=1]
+size = 55
+font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 10, 300 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 512, 10 )
+
+[node name="root" type="Node"]
+script = ExtResource( 1 )
+
+[node name="TextureRect" type="TextureRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GUI" type="Node" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="GUI"]
+margin_right = 1024.0
+margin_bottom = 100.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 20
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GUI/MarginContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 149.0
+
+[node name="HealthBarP1" type="TextureProgress" parent="GUI/MarginContainer/HBoxContainer"]
+margin_right = 386.0
+margin_bottom = 53.0
+size_flags_vertical = 0
+value = 100.0
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="GUI/MarginContainer/HBoxContainer"]
+margin_left = 390.0
+margin_right = 594.0
+margin_bottom = 129.0
+size_flags_horizontal = 3
+size_flags_vertical = 15
+custom_fonts/font = SubResource( 1 )
+text = "99
+"
+align = 1
+
+[node name="HealthBarP2" type="TextureProgress" parent="GUI/MarginContainer/HBoxContainer"]
+margin_left = 598.0
+margin_right = 984.0
+margin_bottom = 53.0
+size_flags_vertical = 0
+value = 18.0
+texture_over = ExtResource( 2 )
+texture_progress = ExtResource( 3 )
+fill_mode = 1
+
+[node name="Borders" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders"]
+position = Vector2( -5, 300 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders"]
+position = Vector2( 1029, 300 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders"]
+position = Vector2( 512, 580 )
+shape = SubResource( 3 )
